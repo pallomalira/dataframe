@@ -1,0 +1,549 @@
+Created by PLY version 3.11 (http://www.dabeaz.com/ply)
+
+Unused terminals:
+
+    AND
+    ARQUIVO
+    CHAVEDIR
+    CHAVEESQ
+    CLASSE
+    COLCHETEDIR
+    COLCHETEESQ
+    COM
+    COMANDO
+    CONTAGEM
+    DIFERENTE
+    DIVIDIR
+    DOISPONTOS
+    FUNCAO
+    IGUAL
+    JUNTAR
+    MAIORGUAL
+    MAIS
+    MAXIMO
+    MENOQ
+    MENORIGUAL
+    MENOS
+    MINIMO
+    NOT
+    NUMDEC
+    OR
+    PARENDIR
+    PARENESQ
+    PONTO
+    PONTOVIRGULA
+    RECEBE
+    VEZES
+
+Grammar
+
+Rule 0     S' -> program
+Rule 1     program -> program expression
+Rule 2     program -> expression
+Rule 3     expression -> CARREGAR STRING COMO ID
+Rule 4     expression -> MEDIA DE ID PARA ID
+Rule 5     expression -> SOMA DE ID PARA ID
+Rule 6     expression -> DESCRICAO DE ID
+Rule 7     expression -> FILTRAR ID ONDE ID MAIORQ NUMINT
+Rule 8     expression -> SELECIONE lista_colunas DE ID
+Rule 9     lista_colunas -> lista_colunas VIRGULA ID
+Rule 10    lista_colunas -> ID
+Rule 11    expression -> GRAFICO DE ID PARA ID
+Rule 12    expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID
+
+Terminals, with rules where they appear
+
+AND                  : 
+ARQUIVO              : 
+CARREGAR             : 3
+CHAVEDIR             : 
+CHAVEESQ             : 
+CLASSE               : 
+COLCHETEDIR          : 
+COLCHETEESQ          : 
+COM                  : 
+COMANDO              : 
+COMO                 : 3
+CONTAGEM             : 
+DE                   : 4 5 6 8 11 12 12
+DESCRICAO            : 6
+DIFERENTE            : 
+DIVIDIR              : 
+DOISPONTOS           : 
+FILTRAR              : 7
+FUNCAO               : 
+GRAFICO              : 11 12
+ID                   : 3 4 4 5 5 6 7 7 8 9 10 11 11 12 12 12
+IGUAL                : 
+JUNTAR               : 
+MAIORGUAL            : 
+MAIORQ               : 7
+MAIS                 : 
+MAXIMO               : 
+MEDIA                : 4
+MENOQ                : 
+MENORIGUAL           : 
+MENOS                : 
+MINIMO               : 
+NOT                  : 
+NUMDEC               : 
+NUMINT               : 7
+ONDE                 : 7
+OR                   : 
+PARA                 : 4 5 11 12
+PARENDIR             : 
+PARENESQ             : 
+PIZZA                : 12
+PONTO                : 
+PONTOVIRGULA         : 
+RECEBE               : 
+SELECIONE            : 8
+SOMA                 : 5
+STRING               : 3
+VEZES                : 
+VIRGULA              : 9 12
+error                : 
+
+Nonterminals, with rules where they appear
+
+expression           : 1 2
+lista_colunas        : 8 9
+program              : 1 0
+
+Parsing method: LALR
+
+state 0
+
+    (0) S' -> . program
+    (1) program -> . program expression
+    (2) program -> . expression
+    (3) expression -> . CARREGAR STRING COMO ID
+    (4) expression -> . MEDIA DE ID PARA ID
+    (5) expression -> . SOMA DE ID PARA ID
+    (6) expression -> . DESCRICAO DE ID
+    (7) expression -> . FILTRAR ID ONDE ID MAIORQ NUMINT
+    (8) expression -> . SELECIONE lista_colunas DE ID
+    (11) expression -> . GRAFICO DE ID PARA ID
+    (12) expression -> . GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID
+
+    CARREGAR        shift and go to state 3
+    MEDIA           shift and go to state 4
+    SOMA            shift and go to state 5
+    DESCRICAO       shift and go to state 6
+    FILTRAR         shift and go to state 7
+    SELECIONE       shift and go to state 8
+    GRAFICO         shift and go to state 9
+
+    program                        shift and go to state 1
+    expression                     shift and go to state 2
+
+state 1
+
+    (0) S' -> program .
+    (1) program -> program . expression
+    (3) expression -> . CARREGAR STRING COMO ID
+    (4) expression -> . MEDIA DE ID PARA ID
+    (5) expression -> . SOMA DE ID PARA ID
+    (6) expression -> . DESCRICAO DE ID
+    (7) expression -> . FILTRAR ID ONDE ID MAIORQ NUMINT
+    (8) expression -> . SELECIONE lista_colunas DE ID
+    (11) expression -> . GRAFICO DE ID PARA ID
+    (12) expression -> . GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID
+
+    CARREGAR        shift and go to state 3
+    MEDIA           shift and go to state 4
+    SOMA            shift and go to state 5
+    DESCRICAO       shift and go to state 6
+    FILTRAR         shift and go to state 7
+    SELECIONE       shift and go to state 8
+    GRAFICO         shift and go to state 9
+
+    expression                     shift and go to state 10
+
+state 2
+
+    (2) program -> expression .
+
+    CARREGAR        reduce using rule 2 (program -> expression .)
+    MEDIA           reduce using rule 2 (program -> expression .)
+    SOMA            reduce using rule 2 (program -> expression .)
+    DESCRICAO       reduce using rule 2 (program -> expression .)
+    FILTRAR         reduce using rule 2 (program -> expression .)
+    SELECIONE       reduce using rule 2 (program -> expression .)
+    GRAFICO         reduce using rule 2 (program -> expression .)
+    $end            reduce using rule 2 (program -> expression .)
+
+
+state 3
+
+    (3) expression -> CARREGAR . STRING COMO ID
+
+    STRING          shift and go to state 11
+
+
+state 4
+
+    (4) expression -> MEDIA . DE ID PARA ID
+
+    DE              shift and go to state 12
+
+
+state 5
+
+    (5) expression -> SOMA . DE ID PARA ID
+
+    DE              shift and go to state 13
+
+
+state 6
+
+    (6) expression -> DESCRICAO . DE ID
+
+    DE              shift and go to state 14
+
+
+state 7
+
+    (7) expression -> FILTRAR . ID ONDE ID MAIORQ NUMINT
+
+    ID              shift and go to state 15
+
+
+state 8
+
+    (8) expression -> SELECIONE . lista_colunas DE ID
+    (9) lista_colunas -> . lista_colunas VIRGULA ID
+    (10) lista_colunas -> . ID
+
+    ID              shift and go to state 17
+
+    lista_colunas                  shift and go to state 16
+
+state 9
+
+    (11) expression -> GRAFICO . DE ID PARA ID
+    (12) expression -> GRAFICO . DE PIZZA DE ID PARA ID VIRGULA ID
+
+    DE              shift and go to state 18
+
+
+state 10
+
+    (1) program -> program expression .
+
+    CARREGAR        reduce using rule 1 (program -> program expression .)
+    MEDIA           reduce using rule 1 (program -> program expression .)
+    SOMA            reduce using rule 1 (program -> program expression .)
+    DESCRICAO       reduce using rule 1 (program -> program expression .)
+    FILTRAR         reduce using rule 1 (program -> program expression .)
+    SELECIONE       reduce using rule 1 (program -> program expression .)
+    GRAFICO         reduce using rule 1 (program -> program expression .)
+    $end            reduce using rule 1 (program -> program expression .)
+
+
+state 11
+
+    (3) expression -> CARREGAR STRING . COMO ID
+
+    COMO            shift and go to state 19
+
+
+state 12
+
+    (4) expression -> MEDIA DE . ID PARA ID
+
+    ID              shift and go to state 20
+
+
+state 13
+
+    (5) expression -> SOMA DE . ID PARA ID
+
+    ID              shift and go to state 21
+
+
+state 14
+
+    (6) expression -> DESCRICAO DE . ID
+
+    ID              shift and go to state 22
+
+
+state 15
+
+    (7) expression -> FILTRAR ID . ONDE ID MAIORQ NUMINT
+
+    ONDE            shift and go to state 23
+
+
+state 16
+
+    (8) expression -> SELECIONE lista_colunas . DE ID
+    (9) lista_colunas -> lista_colunas . VIRGULA ID
+
+    DE              shift and go to state 24
+    VIRGULA         shift and go to state 25
+
+
+state 17
+
+    (10) lista_colunas -> ID .
+
+    DE              reduce using rule 10 (lista_colunas -> ID .)
+    VIRGULA         reduce using rule 10 (lista_colunas -> ID .)
+
+
+state 18
+
+    (11) expression -> GRAFICO DE . ID PARA ID
+    (12) expression -> GRAFICO DE . PIZZA DE ID PARA ID VIRGULA ID
+
+    ID              shift and go to state 26
+    PIZZA           shift and go to state 27
+
+
+state 19
+
+    (3) expression -> CARREGAR STRING COMO . ID
+
+    ID              shift and go to state 28
+
+
+state 20
+
+    (4) expression -> MEDIA DE ID . PARA ID
+
+    PARA            shift and go to state 29
+
+
+state 21
+
+    (5) expression -> SOMA DE ID . PARA ID
+
+    PARA            shift and go to state 30
+
+
+state 22
+
+    (6) expression -> DESCRICAO DE ID .
+
+    CARREGAR        reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    MEDIA           reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    SOMA            reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    DESCRICAO       reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    FILTRAR         reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    SELECIONE       reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    GRAFICO         reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    $end            reduce using rule 6 (expression -> DESCRICAO DE ID .)
+
+
+state 23
+
+    (7) expression -> FILTRAR ID ONDE . ID MAIORQ NUMINT
+
+    ID              shift and go to state 31
+
+
+state 24
+
+    (8) expression -> SELECIONE lista_colunas DE . ID
+
+    ID              shift and go to state 32
+
+
+state 25
+
+    (9) lista_colunas -> lista_colunas VIRGULA . ID
+
+    ID              shift and go to state 33
+
+
+state 26
+
+    (11) expression -> GRAFICO DE ID . PARA ID
+
+    PARA            shift and go to state 34
+
+
+state 27
+
+    (12) expression -> GRAFICO DE PIZZA . DE ID PARA ID VIRGULA ID
+
+    DE              shift and go to state 35
+
+
+state 28
+
+    (3) expression -> CARREGAR STRING COMO ID .
+
+    CARREGAR        reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    MEDIA           reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    SOMA            reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    DESCRICAO       reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    FILTRAR         reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    SELECIONE       reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    GRAFICO         reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    $end            reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+
+
+state 29
+
+    (4) expression -> MEDIA DE ID PARA . ID
+
+    ID              shift and go to state 36
+
+
+state 30
+
+    (5) expression -> SOMA DE ID PARA . ID
+
+    ID              shift and go to state 37
+
+
+state 31
+
+    (7) expression -> FILTRAR ID ONDE ID . MAIORQ NUMINT
+
+    MAIORQ          shift and go to state 38
+
+
+state 32
+
+    (8) expression -> SELECIONE lista_colunas DE ID .
+
+    CARREGAR        reduce using rule 8 (expression -> SELECIONE lista_colunas DE ID .)
+    MEDIA           reduce using rule 8 (expression -> SELECIONE lista_colunas DE ID .)
+    SOMA            reduce using rule 8 (expression -> SELECIONE lista_colunas DE ID .)
+    DESCRICAO       reduce using rule 8 (expression -> SELECIONE lista_colunas DE ID .)
+    FILTRAR         reduce using rule 8 (expression -> SELECIONE lista_colunas DE ID .)
+    SELECIONE       reduce using rule 8 (expression -> SELECIONE lista_colunas DE ID .)
+    GRAFICO         reduce using rule 8 (expression -> SELECIONE lista_colunas DE ID .)
+    $end            reduce using rule 8 (expression -> SELECIONE lista_colunas DE ID .)
+
+
+state 33
+
+    (9) lista_colunas -> lista_colunas VIRGULA ID .
+
+    DE              reduce using rule 9 (lista_colunas -> lista_colunas VIRGULA ID .)
+    VIRGULA         reduce using rule 9 (lista_colunas -> lista_colunas VIRGULA ID .)
+
+
+state 34
+
+    (11) expression -> GRAFICO DE ID PARA . ID
+
+    ID              shift and go to state 39
+
+
+state 35
+
+    (12) expression -> GRAFICO DE PIZZA DE . ID PARA ID VIRGULA ID
+
+    ID              shift and go to state 40
+
+
+state 36
+
+    (4) expression -> MEDIA DE ID PARA ID .
+
+    CARREGAR        reduce using rule 4 (expression -> MEDIA DE ID PARA ID .)
+    MEDIA           reduce using rule 4 (expression -> MEDIA DE ID PARA ID .)
+    SOMA            reduce using rule 4 (expression -> MEDIA DE ID PARA ID .)
+    DESCRICAO       reduce using rule 4 (expression -> MEDIA DE ID PARA ID .)
+    FILTRAR         reduce using rule 4 (expression -> MEDIA DE ID PARA ID .)
+    SELECIONE       reduce using rule 4 (expression -> MEDIA DE ID PARA ID .)
+    GRAFICO         reduce using rule 4 (expression -> MEDIA DE ID PARA ID .)
+    $end            reduce using rule 4 (expression -> MEDIA DE ID PARA ID .)
+
+
+state 37
+
+    (5) expression -> SOMA DE ID PARA ID .
+
+    CARREGAR        reduce using rule 5 (expression -> SOMA DE ID PARA ID .)
+    MEDIA           reduce using rule 5 (expression -> SOMA DE ID PARA ID .)
+    SOMA            reduce using rule 5 (expression -> SOMA DE ID PARA ID .)
+    DESCRICAO       reduce using rule 5 (expression -> SOMA DE ID PARA ID .)
+    FILTRAR         reduce using rule 5 (expression -> SOMA DE ID PARA ID .)
+    SELECIONE       reduce using rule 5 (expression -> SOMA DE ID PARA ID .)
+    GRAFICO         reduce using rule 5 (expression -> SOMA DE ID PARA ID .)
+    $end            reduce using rule 5 (expression -> SOMA DE ID PARA ID .)
+
+
+state 38
+
+    (7) expression -> FILTRAR ID ONDE ID MAIORQ . NUMINT
+
+    NUMINT          shift and go to state 41
+
+
+state 39
+
+    (11) expression -> GRAFICO DE ID PARA ID .
+
+    CARREGAR        reduce using rule 11 (expression -> GRAFICO DE ID PARA ID .)
+    MEDIA           reduce using rule 11 (expression -> GRAFICO DE ID PARA ID .)
+    SOMA            reduce using rule 11 (expression -> GRAFICO DE ID PARA ID .)
+    DESCRICAO       reduce using rule 11 (expression -> GRAFICO DE ID PARA ID .)
+    FILTRAR         reduce using rule 11 (expression -> GRAFICO DE ID PARA ID .)
+    SELECIONE       reduce using rule 11 (expression -> GRAFICO DE ID PARA ID .)
+    GRAFICO         reduce using rule 11 (expression -> GRAFICO DE ID PARA ID .)
+    $end            reduce using rule 11 (expression -> GRAFICO DE ID PARA ID .)
+
+
+state 40
+
+    (12) expression -> GRAFICO DE PIZZA DE ID . PARA ID VIRGULA ID
+
+    PARA            shift and go to state 42
+
+
+state 41
+
+    (7) expression -> FILTRAR ID ONDE ID MAIORQ NUMINT .
+
+    CARREGAR        reduce using rule 7 (expression -> FILTRAR ID ONDE ID MAIORQ NUMINT .)
+    MEDIA           reduce using rule 7 (expression -> FILTRAR ID ONDE ID MAIORQ NUMINT .)
+    SOMA            reduce using rule 7 (expression -> FILTRAR ID ONDE ID MAIORQ NUMINT .)
+    DESCRICAO       reduce using rule 7 (expression -> FILTRAR ID ONDE ID MAIORQ NUMINT .)
+    FILTRAR         reduce using rule 7 (expression -> FILTRAR ID ONDE ID MAIORQ NUMINT .)
+    SELECIONE       reduce using rule 7 (expression -> FILTRAR ID ONDE ID MAIORQ NUMINT .)
+    GRAFICO         reduce using rule 7 (expression -> FILTRAR ID ONDE ID MAIORQ NUMINT .)
+    $end            reduce using rule 7 (expression -> FILTRAR ID ONDE ID MAIORQ NUMINT .)
+
+
+state 42
+
+    (12) expression -> GRAFICO DE PIZZA DE ID PARA . ID VIRGULA ID
+
+    ID              shift and go to state 43
+
+
+state 43
+
+    (12) expression -> GRAFICO DE PIZZA DE ID PARA ID . VIRGULA ID
+
+    VIRGULA         shift and go to state 44
+
+
+state 44
+
+    (12) expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA . ID
+
+    ID              shift and go to state 45
+
+
+state 45
+
+    (12) expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID .
+
+    CARREGAR        reduce using rule 12 (expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID .)
+    MEDIA           reduce using rule 12 (expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID .)
+    SOMA            reduce using rule 12 (expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID .)
+    DESCRICAO       reduce using rule 12 (expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID .)
+    FILTRAR         reduce using rule 12 (expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID .)
+    SELECIONE       reduce using rule 12 (expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID .)
+    GRAFICO         reduce using rule 12 (expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID .)
+    $end            reduce using rule 12 (expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID .)
+
