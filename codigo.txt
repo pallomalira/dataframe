@@ -1,10 +1,13 @@
 carregar "dados_text.xlsx" como df1
-media de df1 para Quantidade
-soma de df1 para Quantidade
+media de df1 para "Quantidade"
+soma de df1 para "Quantidade"
 descricao de df1
-filtrar df1 onde Quantidade > 5
-selecione Produto, Quantidade de df1
-grafico de pizza de df1 para Produto, Quantidade
+filtrar df1 onde "Quantidade" > 5
+cabeca de df1
+cauda(7) de df1
+selecione "Produto", "Quantidade" de df1
+# Podemos gera um gráfico de pizza
+grafico de pizza de df1 para "Produto", "Quantidade"
 
-#ou grafico de barra
-grafico de df1 para Quantidade
+# ou grafico de barra
+grafico de barras de df1 para "Quantidade"

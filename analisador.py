@@ -4,6 +4,7 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import os
 
+
 dataframes = {}
 
 # PALAVRAS RESERVADAS ADAPTADAS PARA PANDAS / ANÁLISE DE DADOS
@@ -23,14 +24,16 @@ reserved = {
     'maximo': 'MAXIMO',
     'contagem': 'CONTAGEM',
     'descricao': 'DESCRICAO',     # describe()
-    'shape': 'SHAPE',
+    'forma': 'FORMA',
+    'cabeca': 'CABECA',
+    'cauda': 'CAUDA',
 
     'selecione': 'SELECIONE',
     'de': 'DE',
     'para': 'PARA',
     'função': 'FUNCAO',
     'classe': 'CLASSE',
-    'comando' : 'COMANDO',
+    'comando': 'COMANDO',
     
     'grafico': 'GRAFICO',
     'pizza': 'PIZZA',
@@ -52,8 +55,8 @@ tokens = (
 
     # OPERADORES DE COMPARAÇÃO
     'MAIORQ',
-    'MENOQ',
-    'MAIORGUAL',
+    'MENORQ',
+    'MAIORIGUAL',
     'MENORIGUAL',
     'IGUAL',
     'DIFERENTE',
@@ -89,8 +92,8 @@ t_VEZES   = r'\*'
 t_DIVIDIR  = r'/'
 
 t_MAIORQ = r'>'
-t_MENOQ = r'<'
-t_MAIORGUAL = r'>='
+t_MENORQ = r'<'
+t_MAIORIGUAL = r'>='
 t_MENORIGUAL = r'<='
 t_IGUAL = r'=='
 t_DIFERENTE = r'!='
@@ -114,9 +117,18 @@ t_PONTOVIRGULA = r';'
 
 # LITERAIS
 
-t_NUMINT = r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'
-t_NUMDEC = r'((\d+)(\.\d+)(e(\+|-)?(\d+))?|(\d+)e(\+|-)?(\d+))([lL]|[fF])?'
+def t_NUMINT(t):
+    r'\d+([uU]|[lL]|[uU][lL]|[lL][uU])?'
+    t.value = int(t.value)
+    return t
+
+def t_NUMDEC(t):
+    r'((\d+)(\.\d+)(e(\+|-)?(\d+))?|(\d+)e(\+|-)?(\d+))([lL]|[fF])?'
+    t.value = float(t.value)
+    return t
+
 t_STRING = r'\"([^\\\n]|(\\.))*?\"'
+
 
 # IDENTIFICADOR + VERIFICAÇÃO DE PALAVRA RESERVADA
 def t_ID(t):
@@ -149,6 +161,7 @@ lexer = lex.lex()
 
 saidas = []
 
+
 def p_program(p):
     '''program : program expression
                | expression'''
@@ -165,31 +178,36 @@ def p_comando_carregar(p):
 
     df = pd.read_excel(caminho_arquivo)
     dataframes[p[4]] = df
+
     print(f"Arquivo '{caminho_arquivo}' carregado como '{p[4]}'.")
+    
+
 
 def p_comando_media(p):
-    '''expression : MEDIA DE ID PARA ID'''
+    '''expression : MEDIA DE ID PARA STRING'''
     global dataframes
 
     df_name = p[3]
-    coluna = p[5]
+    coluna = p[5].strip('"')
     if df_name in dataframes:
         media = dataframes[df_name][coluna].mean()
         saidas.append(f"Média da coluna '{coluna}' em {df_name}: {media}")
     else:
         saidas.append(f"DataFrame '{df_name}' não encontrado.")
 
+
 def p_comando_soma(p):
-    '''expression : SOMA DE ID PARA ID'''
+    '''expression : SOMA DE ID PARA STRING'''
     global dataframes
 
     df_name = p[3]
-    coluna = p[5]
+    coluna = p[5].strip('"')
     if df_name in dataframes:
         soma = dataframes[df_name][coluna].sum()
         saidas.append(f"Soma da coluna '{coluna}' em {df_name}: {soma}")
     else:
         saidas.append(f"DataFrame '{df_name}' não encontrado.")
+
 
 def p_comando_descricao(p):
     '''expression : DESCRICAO DE ID'''
@@ -202,30 +220,91 @@ def p_comando_descricao(p):
     else:
         saidas.append(f"DataFrame '{df_name}' não encontrado.")
 
-def p_comando_descricao(p):
-    '''expression : SHAPE DE ID'''
+
+def p_comando_cabeca(p):
+    '''expression : CABECA DE ID'''
     global dataframes
 
     df_name = p[3]
     if df_name in dataframes:
-        txt = f"Shape do DataFrame '{df_name}':\n {dataframes[df_name].shape}"
+        txt = f"Cabeça do DataFrame '{df_name}':\n {dataframes[df_name].head()}"
         saidas.append(txt)
     else:
         saidas.append(f"DataFrame '{df_name}' não encontrado.")
 
+
+def p_comando_cabeca_quantidade(p):
+    '''expression : CABECA PARENESQ NUMINT PARENDIR DE ID'''
+    global dataframes
+
+    num = p[3]
+    df_name = p[6]
+    if df_name in dataframes:
+        txt = f"Cabeça do DataFrame '{df_name}':\n {dataframes[df_name].head(num)}"
+        saidas.append(txt)
+    else:
+        saidas.append(f"DataFrame '{df_name}' não encontrado.")
+
+
+def p_comando_cauda(p):
+    '''expression : CAUDA DE ID'''
+    global dataframes
+    
+    df_name = p[3]
+    if df_name in dataframes:
+        txt = f"Cabeça do DataFrame '{df_name}':\n {dataframes[df_name].tail()}"
+        saidas.append(txt)
+    else:
+        saidas.append(f"DataFrame '{df_name}' não encontrado.")
+
+
+def p_comando_cauda_quantidade(p):
+    '''expression : CAUDA PARENESQ NUMINT PARENDIR DE ID'''
+    global dataframes
+    
+    num = p[3]
+    df_name = p[6]
+    if df_name in dataframes:
+        txt = f"Cabeça do DataFrame '{df_name}':\n {dataframes[df_name].tail(num)}"
+        saidas.append(txt)
+    else:
+        saidas.append(f"DataFrame '{df_name}' não encontrado.")
+
+
 def p_comando_filtrar(p):
-    '''expression : FILTRAR ID ONDE ID MAIORQ NUMINT'''
+    '''expression : FILTRAR ID ONDE STRING operador NUMINT'''
+
     global dataframes
 
     df_name = p[2]
-    coluna = p[4]
+    coluna = p[4].strip('"')
     valor = int(p[6])
     if df_name in dataframes:
-        resultado = dataframes[df_name][dataframes[df_name][coluna] > valor]
-        txt = f"Filtrando '{df_name}' onde {coluna} > {valor}:\n{resultado}"
+        if p[5] == ">":
+            resultado = dataframes[df_name][dataframes[df_name][coluna] > valor]            
+        elif p[5] == "<":
+            resultado = dataframes[df_name][dataframes[df_name][coluna] < valor]
+        elif p[5] == ">=":
+            resultado = dataframes[df_name][dataframes[df_name][coluna] >= valor]
+        elif p[5] == "<=":
+            resultado = dataframes[df_name][dataframes[df_name][coluna] <= valor]
+        elif p[5] == "==":
+            resultado = dataframes[df_name][dataframes[df_name][coluna] == valor]
+           
+        txt = f"Filtrando '{df_name}' onde {coluna} {p[5]} {valor}:\n{resultado}"
         saidas.append(txt)
     else:
         saidas.append(f"DataFrame '{df_name}' não encontrado.")
+
+
+def p_operador(p):
+    '''operador : MAIORQ
+                | MENORQ
+                | MAIORIGUAL
+                | MENORIGUAL
+                | IGUAL'''
+    p[0] = p[1]
+
 
 def p_comando_selecione_colunas(p):
     'expression : SELECIONE lista_colunas DE ID'
@@ -233,29 +312,35 @@ def p_comando_selecione_colunas(p):
     colunas = p[2]
     nome = p[4]
     if nome in dataframes:
+        for i in range(len(colunas)):
+            colunas[i] = colunas[i].strip('"')
         saidas.append(dataframes[nome][colunas])
     else:
         saidas.append(f"DataFrame '{nome}' não encontrado.")
 
+
 def p_lista_colunas(p):
-    '''lista_colunas : lista_colunas VIRGULA ID
-                     | ID'''
+    '''lista_colunas : lista_colunas VIRGULA STRING
+                     | STRING'''
     if len(p) == 2:
         p[0] = [p[1]]
     else:
         p[0] = p[1] + [p[3]]
 
+
 def p_error(p):
-    print("Erro de sintaxe.")
+    if p:
+        print(f"Erro de sintaxe no token {p.type!r} (valor={p.value!r}) na linha {p.lineno}")
+    # print("Erro de sintaxe.")
 
 ############################################################################################################################3
 #plotar graficos
 
 def p_comando_grafico(p):
-    '''expression : GRAFICO DE BARRAS DE ID PARA ID'''
+    '''expression : GRAFICO DE BARRAS DE STRING PARA ID'''
     global dataframes
     df_name = p[5]
-    coluna = p[7]
+    coluna = p[7].strip('"')
     if df_name in dataframes:
         df = dataframes[df_name]
         if coluna in df.columns:
@@ -268,13 +353,14 @@ def p_comando_grafico(p):
             print(f"Coluna '{coluna}' não encontrada em {df_name}.")
     else:
         print(f"DataFrame '{df_name}' não encontrado.")
-        
+
+
 def p_comando_grafico_pizza(p):
-    '''expression : GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID'''
+    '''expression : GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA ID'''
     global dataframes
     df_name = p[5]
-    label_col = p[7]
-    value_col = p[9]
+    label_col = p[7].strip("'")
+    value_col = p[9].strip("'")
     if df_name in dataframes:
         df = dataframes[df_name]
         if label_col in df.columns and value_col in df.columns:
@@ -292,5 +378,3 @@ def p_comando_grafico_pizza(p):
 
 
 parser = yacc.yacc()
-
-

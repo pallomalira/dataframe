@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND ARQUIVO BARRAS CARREGAR CHAVEDIR CHAVEESQ CLASSE COLCHETEDIR COLCHETEESQ COM COMANDO COMO CONTAGEM DE DESCRICAO DIFERENTE DIVIDIR DOISPONTOS FILTRAR FUNCAO GRAFICO GRAFICO ID IGUAL JUNTAR MAIORGUAL MAIORQ MAIS MAXIMO MEDIA MENOQ MENORIGUAL MENOS MINIMO NOT NUMDEC NUMINT ONDE OR PARA PARENDIR PARENESQ PIZZA PIZZA PONTO PONTOVIRGULA RECEBE SELECIONE SHAPE SOMA STRING VEZES VIRGULAprogram : program expression\n               | expressionexpression : CARREGAR STRING COMO IDexpression : MEDIA DE ID PARA IDexpression : SOMA DE ID PARA IDexpression : SHAPE DE IDexpression : FILTRAR ID ONDE ID MAIORQ NUMINTexpression : SELECIONE lista_colunas DE IDlista_colunas : lista_colunas VIRGULA ID\n                     | IDexpression : GRAFICO DE BARRAS DE ID PARA IDexpression : GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID'
+_lr_signature = 'AND ARQUIVO BARRAS CABECA CARREGAR CAUDA CHAVEDIR CHAVEESQ CLASSE COLCHETEDIR COLCHETEESQ COM COMANDO COMO CONTAGEM DE DESCRICAO DIFERENTE DIVIDIR DOISPONTOS FILTRAR FORMA FUNCAO GRAFICO GRAFICO ID IGUAL JUNTAR MAIORIGUAL MAIORQ MAIS MAXIMO MEDIA MENORIGUAL MENORQ MENOS MINIMO NOT NUMDEC NUMINT ONDE OR PARA PARENDIR PARENESQ PIZZA PIZZA PONTO PONTOVIRGULA RECEBE SELECIONE SOMA STRING VEZES VIRGULAprogram : program expression\n               | expressionexpression : CARREGAR STRING COMO IDexpression : MEDIA DE ID PARA STRINGexpression : SOMA DE ID PARA STRINGexpression : DESCRICAO DE IDexpression : CABECA DE IDexpression : CABECA PARENESQ NUMINT PARENDIR DE IDexpression : CAUDA DE IDexpression : CAUDA PARENESQ NUMINT PARENDIR DE IDexpression : FILTRAR ID ONDE STRING operador NUMINToperador : MAIORQ\n                | MENORQ\n                | MAIORIGUAL\n                | MENORIGUAL\n                | IGUALexpression : SELECIONE lista_colunas DE IDlista_colunas : lista_colunas VIRGULA STRING\n                     | STRINGexpression : GRAFICO DE BARRAS DE ID PARA IDexpression : GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID'
     
-_lr_action_items = {'CARREGAR':([0,1,2,10,22,28,32,36,37,41,44,47,],[3,3,-2,-1,-6,-3,-8,-4,-5,-7,-11,-12,]),'MEDIA':([0,1,2,10,22,28,32,36,37,41,44,47,],[4,4,-2,-1,-6,-3,-8,-4,-5,-7,-11,-12,]),'SOMA':([0,1,2,10,22,28,32,36,37,41,44,47,],[5,5,-2,-1,-6,-3,-8,-4,-5,-7,-11,-12,]),'SHAPE':([0,1,2,10,22,28,32,36,37,41,44,47,],[6,6,-2,-1,-6,-3,-8,-4,-5,-7,-11,-12,]),'FILTRAR':([0,1,2,10,22,28,32,36,37,41,44,47,],[7,7,-2,-1,-6,-3,-8,-4,-5,-7,-11,-12,]),'SELECIONE':([0,1,2,10,22,28,32,36,37,41,44,47,],[8,8,-2,-1,-6,-3,-8,-4,-5,-7,-11,-12,]),'GRAFICO':([0,1,2,10,22,28,32,36,37,41,44,47,],[9,9,-2,-1,-6,-3,-8,-4,-5,-7,-11,-12,]),'$end':([1,2,10,22,28,32,36,37,41,44,47,],[0,-2,-1,-6,-3,-8,-4,-5,-7,-11,-12,]),'STRING':([3,],[11,]),'DE':([4,5,6,9,16,17,26,27,33,],[12,13,14,18,24,-10,34,35,-9,]),'ID':([7,8,12,13,14,19,23,24,25,29,30,34,35,42,43,46,],[15,17,20,21,22,28,31,32,33,36,37,39,40,44,45,47,]),'COMO':([11,],[19,]),'ONDE':([15,],[23,]),'VIRGULA':([16,17,33,45,],[25,-10,-9,46,]),'BARRAS':([18,],[26,]),'PIZZA':([18,],[27,]),'PARA':([20,21,39,40,],[29,30,42,43,]),'MAIORQ':([31,],[38,]),'NUMINT':([38,],[41,]),}
+_lr_action_items = {'CARREGAR':([0,1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[3,3,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'MEDIA':([0,1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[4,4,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'SOMA':([0,1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[5,5,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'DESCRICAO':([0,1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[6,6,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'CABECA':([0,1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[7,7,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'CAUDA':([0,1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[8,8,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'FILTRAR':([0,1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[9,9,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'SELECIONE':([0,1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[10,10,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'GRAFICO':([0,1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[11,11,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'$end':([1,2,12,28,29,31,38,44,48,49,60,61,62,65,68,],[0,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,]),'STRING':([3,10,33,35,39,40,],[13,23,43,45,48,49,]),'DE':([4,5,6,7,8,11,22,23,36,37,41,42,45,],[14,15,16,17,19,24,34,-19,46,47,50,51,-18,]),'PARENESQ':([7,8,],[18,20,]),'ID':([9,14,15,16,17,19,25,34,46,47,50,51,63,64,67,],[21,26,27,28,29,31,38,44,58,59,60,61,65,66,68,]),'COMO':([13,],[25,]),'NUMINT':([18,20,52,53,54,55,56,57,],[30,32,62,-12,-13,-14,-15,-16,]),'ONDE':([21,],[33,]),'VIRGULA':([22,23,45,66,],[35,-19,-18,67,]),'BARRAS':([24,],[36,]),'PIZZA':([24,],[37,]),'PARA':([26,27,58,59,],[39,40,63,64,]),'PARENDIR':([30,32,],[41,42,]),'MAIORQ':([43,],[53,]),'MENORQ':([43,],[54,]),'MAIORIGUAL':([43,],[55,]),'MENORIGUAL':([43,],[56,]),'IGUAL':([43,],[57,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'expression':([0,1,],[2,10,]),'lista_colunas':([8,],[16,]),}
+_lr_goto_items = {'program':([0,],[1,]),'expression':([0,1,],[2,12,]),'lista_colunas':([10,],[22,]),'operador':([43,],[52,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,16 +27,25 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> program expression','program',2,'p_program','analisador.py',153),
-  ('program -> expression','program',1,'p_program','analisador.py',154),
-  ('expression -> CARREGAR STRING COMO ID','expression',4,'p_comando_carregar','analisador.py',159),
-  ('expression -> MEDIA DE ID PARA ID','expression',5,'p_comando_media','analisador.py',171),
-  ('expression -> SOMA DE ID PARA ID','expression',5,'p_comando_soma','analisador.py',183),
-  ('expression -> SHAPE DE ID','expression',3,'p_comando_descricao','analisador.py',206),
-  ('expression -> FILTRAR ID ONDE ID MAIORQ NUMINT','expression',6,'p_comando_filtrar','analisador.py',217),
-  ('expression -> SELECIONE lista_colunas DE ID','expression',4,'p_comando_selecione_colunas','analisador.py',231),
-  ('lista_colunas -> lista_colunas VIRGULA ID','lista_colunas',3,'p_lista_colunas','analisador.py',241),
-  ('lista_colunas -> ID','lista_colunas',1,'p_lista_colunas','analisador.py',242),
-  ('expression -> GRAFICO DE BARRAS DE ID PARA ID','expression',7,'p_comando_grafico','analisador.py',255),
-  ('expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID','expression',9,'p_comando_grafico_pizza','analisador.py',273),
+  ('program -> program expression','program',2,'p_program','analisador.py',164),
+  ('program -> expression','program',1,'p_program','analisador.py',165),
+  ('expression -> CARREGAR STRING COMO ID','expression',4,'p_comando_carregar','analisador.py',170),
+  ('expression -> MEDIA DE ID PARA STRING','expression',5,'p_comando_media','analisador.py',183),
+  ('expression -> SOMA DE ID PARA STRING','expression',5,'p_comando_soma','analisador.py',196),
+  ('expression -> DESCRICAO DE ID','expression',3,'p_comando_descricao','analisador.py',209),
+  ('expression -> CABECA DE ID','expression',3,'p_comando_cabeca','analisador.py',221),
+  ('expression -> CABECA PARENESQ NUMINT PARENDIR DE ID','expression',6,'p_comando_cabeca_quantidade','analisador.py',233),
+  ('expression -> CAUDA DE ID','expression',3,'p_comando_cauda','analisador.py',246),
+  ('expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID','expression',6,'p_comando_cauda_quantidade','analisador.py',258),
+  ('expression -> FILTRAR ID ONDE STRING operador NUMINT','expression',6,'p_comando_filtrar','analisador.py',271),
+  ('operador -> MAIORQ','operador',1,'p_operador','analisador.py',297),
+  ('operador -> MENORQ','operador',1,'p_operador','analisador.py',298),
+  ('operador -> MAIORIGUAL','operador',1,'p_operador','analisador.py',299),
+  ('operador -> MENORIGUAL','operador',1,'p_operador','analisador.py',300),
+  ('operador -> IGUAL','operador',1,'p_operador','analisador.py',301),
+  ('expression -> SELECIONE lista_colunas DE ID','expression',4,'p_comando_selecione_colunas','analisador.py',306),
+  ('lista_colunas -> lista_colunas VIRGULA STRING','lista_colunas',3,'p_lista_colunas','analisador.py',317),
+  ('lista_colunas -> STRING','lista_colunas',1,'p_lista_colunas','analisador.py',318),
+  ('expression -> GRAFICO DE BARRAS DE ID PARA ID','expression',7,'p_comando_grafico','analisador.py',334),
+  ('expression -> GRAFICO DE PIZZA DE ID PARA ID VIRGULA ID','expression',9,'p_comando_grafico_pizza','analisador.py',353),
 ]

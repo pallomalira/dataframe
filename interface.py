@@ -17,7 +17,10 @@ class Application():
         self.botoes()
         self.Menus()
         self.root.mainloop()
+        self.df = None
 
+    def load_df(self, df):
+        self.df = df
 
     def limpa_telaentrada(self, delete_input=True):
         if delete_input:
@@ -116,6 +119,7 @@ class Application():
                     self.saida_texto.insert(END, f'{data}\n\n')
             except Exception as e:
                 print(f"[ERRO NA ANÁLISE SINTÁTICA] {e}")
+              
                 erro_msg = f"Erro sintático: {e}"
                 saidas.append(("Erro", erro_msg, "-", "-"))
              
@@ -184,6 +188,7 @@ class Application():
             entrada = tf.read()
             self.codigo_entry.insert(END, entrada)
             tf.close()
+        
 
         def onSave():
             files = filedialog.asksaveasfile(mode='w', defaultextension=".txt")
