@@ -13,7 +13,8 @@ reserved = {
     'arquivo': 'ARQUIVO',         # Representa arquivos como CSV, Excel
     'como': 'COMO',               # Alias (equivalente a "as")
 
-    'juntar': 'JUNTAR',           # concat ou merge
+    'juntar': 'JUNTAR',  # concat ou merge
+    'lado': 'LADO',
     'com': 'COM',                 # para juntar com base em colunas
     'filtrar': 'FILTRAR',         # operações com filtros
     'onde': 'ONDE',               # cláusulas de condição
@@ -27,6 +28,7 @@ reserved = {
     'forma': 'FORMA',
     'cabeca': 'CABECA',
     'cauda': 'CAUDA',
+    
 
     'selecione': 'SELECIONE',
     'de': 'DE',
@@ -82,6 +84,8 @@ tokens = (
     #GRAFICO
     'GRAFICO',
     'PIZZA',
+    'BARRA',
+    'LADO',
 ) + tuple(reserved.values())
 
 # EXPRESSÕES REGULARES
@@ -326,6 +330,33 @@ def p_lista_colunas(p):
         p[0] = [p[1]]
     else:
         p[0] = p[1] + [p[3]]
+        
+        
+def p_comando_juntar(p):
+    '''expression : JUNTAR ID COM ID COMO ID LADO'''
+    global dataframes
+    df1_name = p[2]
+    df2_name = p[4]
+    novo_nome = p[6]
+    
+    if df1_name in dataframes and df2_name in dataframes:
+        df1 = dataframes[df1_name]
+        df2 = dataframes[df2_name]
+        
+        # Ajustar índice para evitar NaNs por tamanhos diferentes:
+        min_len = min(len(df1), len(df2))
+        novo_df = pd.concat([
+            df1.iloc[:min_len].reset_index(drop=True), 
+            df2.iloc[:min_len].reset_index(drop=True)
+        ], axis=1)
+        
+        dataframes[novo_nome] = novo_df
+        saidas.append(f"DataFrames '{df1_name}' e '{df2_name}' foram juntados lado a lado como '{novo_nome}':\n")
+        saidas.append(novo_df)
+    else:
+        saidas.append(f"Um dos DataFrames '{df1_name}' ou '{df2_name}' não foi encontrado.")
+
+
 
 
 def p_error(p):
@@ -339,8 +370,8 @@ def p_error(p):
 def p_comando_grafico(p):
     '''expression : GRAFICO DE BARRAS DE STRING PARA ID'''
     global dataframes
-    df_name = p[5]
-    coluna = p[7].strip('"')
+    df_name = p[5].strip('"')  # <-- REMOVER ASPAS
+    coluna = p[7]
     if df_name in dataframes:
         df = dataframes[df_name]
         if coluna in df.columns:
@@ -354,13 +385,12 @@ def p_comando_grafico(p):
     else:
         print(f"DataFrame '{df_name}' não encontrado.")
 
-
 def p_comando_grafico_pizza(p):
-    '''expression : GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA ID'''
+    '''expression : GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING'''
     global dataframes
-    df_name = p[5]
-    label_col = p[7].strip("'")
-    value_col = p[9].strip("'")
+    df_name = p[5].strip('"')       # <-- REMOVER ASPAS
+    label_col = p[7].strip('"')     # <-- REMOVER ASPAS
+    value_col = p[9].strip('"')     # <-- REMOVER ASPAS
     if df_name in dataframes:
         df = dataframes[df_name]
         if label_col in df.columns and value_col in df.columns:
@@ -375,6 +405,7 @@ def p_comando_grafico_pizza(p):
             print(f"Colunas '{label_col}' ou '{value_col}' não encontradas em {df_name}.")
     else:
         print(f"DataFrame '{df_name}' não encontrado.")
+
 
 
 parser = yacc.yacc()
