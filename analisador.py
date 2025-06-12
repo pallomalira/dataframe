@@ -28,6 +28,11 @@ reserved = {
     'forma': 'FORMA',
     'cabeca': 'CABECA',
     'cauda': 'CAUDA',
+    'contar': 'CONTAR',
+    'ordenar': 'ORDENAR',
+    'decrescente': 'DECRESCENTE',
+    'deletar': 'DELETAR',
+
     
 
     'selecione': 'SELECIONE',
@@ -36,6 +41,7 @@ reserved = {
     'função': 'FUNCAO',
     'classe': 'CLASSE',
     'comando': 'COMANDO',
+
     
     'grafico': 'GRAFICO',
     'pizza': 'PIZZA',
@@ -361,17 +367,17 @@ def p_comando_juntar(p):
 
 def p_error(p):
     if p:
-        print(f"Erro de sintaxe no token {p.type!r} (valor={p.value!r}) na linha {p.lineno}")
+        saidas.append(f"Erro de sintaxe no token {p.type!r} (valor={p.value!r}) na linha {p.lineno}")
     # print("Erro de sintaxe.")
 
 ############################################################################################################################3
 #plotar graficos
 
 def p_comando_grafico(p):
-    '''expression : GRAFICO DE BARRAS DE STRING PARA ID'''
+    '''expression : GRAFICO DE BARRAS DE ID PARA STRING'''
     global dataframes
-    df_name = p[5].strip('"')  # <-- REMOVER ASPAS
-    coluna = p[7]
+    df_name = p[5] 
+    coluna = p[7].strip('"')  # <-- REMOVER ASPAS
     if df_name in dataframes:
         df = dataframes[df_name]
         if coluna in df.columns:
@@ -386,9 +392,9 @@ def p_comando_grafico(p):
         print(f"DataFrame '{df_name}' não encontrado.")
 
 def p_comando_grafico_pizza(p):
-    '''expression : GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING'''
+    '''expression : GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING'''
     global dataframes
-    df_name = p[5].strip('"')       # <-- REMOVER ASPAS
+    df_name = p[5]
     label_col = p[7].strip('"')     # <-- REMOVER ASPAS
     value_col = p[9].strip('"')     # <-- REMOVER ASPAS
     if df_name in dataframes:
@@ -406,6 +412,64 @@ def p_comando_grafico_pizza(p):
     else:
         print(f"DataFrame '{df_name}' não encontrado.")
 
+
+def p_comando_contar(p):
+    '''expression : CONTAR STRING DE ID'''
+    df_name = p[4]
+    column = p[2].strip('"')
+    if df_name in dataframes:
+        saidas.append(f'A coluna "{column}" possui {dataframes[df_name][column].value_counts()} valores')
+    else:
+        print(f"DataFrame '{df_name}' não encontrado.")
+
+
+def p_comando_ver_dataframe(p):
+    '''expression : SELECIONE ID'''
+    df_name = p[2]
+    if df_name in dataframes:
+        saidas.append(dataframes[df_name])
+    else:
+        print(f"DataFrame '{df_name}' não encontrado.")
+
+
+def p_comando_ordenar_coluna(p):
+    '''expression : modo STRING DE ID'''
+    if df_name in dataframes:
+        if len(p) == 4:
+            df_name = p[4]
+            column = p[2].strip('"')
+            crescente = True
+            saidas.append(f"Coluna {column} em ordem crescente")
+        if p[2] == "decrescente":
+            crescente = False
+            saidas.append(f"Coluna {column} em ordem decrescente")
+        else:
+            
+
+        saidas.append(dataframes[df_name].sort_values(by=column, ascending=crescente))
+    else:
+        print(f"DataFrame '{df_name}' não encontrado.")
+
+
+def p_modo(p):
+    '''modo : ORDENAR DECRESCENTE
+            | ORDENAR '''
+    if len(p) == 2:
+        p[0] = [p[1]]
+    else:
+        p[0] = p[1] + [p[2]]
+
+
+def p_comando_deletar_coluna(p):
+    '''expression : DELETAR STRING DE ID'''
+    df_name = p[4]
+    column = p[2].strip('"')
+    if df_name in dataframes:
+        dataframes[df_name] = dataframes[df_name].drop(column, axis=1)
+
+        saidas.append(f'Coluna {column} deletada do dataframe {df_name}')
+    else:
+        print(f"DataFrame '{df_name}' não encontrado.")
 
 
 parser = yacc.yacc()

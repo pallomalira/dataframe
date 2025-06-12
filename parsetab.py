@@ -6,9 +6,9 @@ _tabversion = '3.10'
 
 _lr_method = 'LALR'
 
-_lr_signature = 'AND ARQUIVO BARRA BARRAS CABECA CARREGAR CAUDA CHAVEDIR CHAVEESQ CLASSE COLCHETEDIR COLCHETEESQ COM COMANDO COMO CONTAGEM DE DESCRICAO DIFERENTE DIVIDIR DOISPONTOS FILTRAR FORMA FUNCAO GRAFICO GRAFICO ID IGUAL JUNTAR LADO LADO MAIORIGUAL MAIORQ MAIS MAXIMO MEDIA MENORIGUAL MENORQ MENOS MINIMO NOT NUMDEC NUMINT ONDE OR PARA PARENDIR PARENESQ PIZZA PIZZA PONTO PONTOVIRGULA RECEBE SELECIONE SOMA STRING VEZES VIRGULAprogram : program expression\n| expressionexpression : CARREGAR STRING COMO IDexpression : MEDIA DE ID PARA STRINGexpression : SOMA DE ID PARA STRINGexpression : DESCRICAO DE IDexpression : CABECA DE IDexpression : CABECA PARENESQ NUMINT PARENDIR DE IDexpression : CAUDA DE IDexpression : CAUDA PARENESQ NUMINT PARENDIR DE IDexpression : FILTRAR ID ONDE STRING operador NUMINToperador : MAIORQ\n| MENORQ\n| MAIORIGUAL\n| MENORIGUAL\n| IGUALexpression : SELECIONE lista_colunas DE IDlista_colunas : lista_colunas VIRGULA STRING\n| STRINGexpression : JUNTAR ID COM ID COMO ID LADOexpression : GRAFICO DE BARRAS DE STRING PARA IDexpression : GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING'
+_lr_signature = 'AND ARQUIVO BARRA BARRAS CABECA CARREGAR CAUDA CHAVEDIR CHAVEESQ CLASSE COLCHETEDIR COLCHETEESQ COM COMANDO COMO CONTAGEM CONTAR DE DECRESCENTE DELETAR DESCRICAO DIFERENTE DIVIDIR DOISPONTOS FILTRAR FORMA FUNCAO GRAFICO GRAFICO ID IGUAL JUNTAR LADO LADO MAIORIGUAL MAIORQ MAIS MAXIMO MEDIA MENORIGUAL MENORQ MENOS MINIMO NOT NUMDEC NUMINT ONDE OR ORDENAR PARA PARENDIR PARENESQ PIZZA PIZZA PONTO PONTOVIRGULA RECEBE SELECIONE SOMA STRING VEZES VIRGULAprogram : program expression\n               | expressionexpression : CARREGAR STRING COMO IDexpression : MEDIA DE ID PARA STRINGexpression : SOMA DE ID PARA STRINGexpression : DESCRICAO DE IDexpression : CABECA DE IDexpression : CABECA PARENESQ NUMINT PARENDIR DE IDexpression : CAUDA DE IDexpression : CAUDA PARENESQ NUMINT PARENDIR DE IDexpression : FILTRAR ID ONDE STRING operador NUMINToperador : MAIORQ\n                | MENORQ\n                | MAIORIGUAL\n                | MENORIGUAL\n                | IGUALexpression : SELECIONE lista_colunas DE IDlista_colunas : lista_colunas VIRGULA STRING\n                     | STRINGexpression : JUNTAR ID COM ID COMO ID LADOexpression : GRAFICO DE BARRAS DE ID PARA STRINGexpression : GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRINGexpression : CONTAR STRING DE IDexpression : SELECIONE IDexpression : ORDENAR STRING DE IDexpression : ORDENAR DECRESCENTE STRING DE IDexpression : DELETAR STRING DE ID'
     
-_lr_action_items = {'CARREGAR':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[3,3,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'MEDIA':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[4,4,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'SOMA':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[5,5,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'DESCRICAO':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[6,6,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'CABECA':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[7,7,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'CAUDA':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[8,8,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'FILTRAR':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[9,9,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'SELECIONE':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[10,10,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'JUNTAR':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[11,11,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'GRAFICO':([0,1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[12,12,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'$end':([1,2,13,30,31,33,41,47,52,53,65,66,67,71,72,75,],[0,-2,-1,-6,-7,-9,-3,-17,-4,-5,-8,-10,-11,-20,-21,-22,]),'STRING':([3,10,35,37,42,43,50,51,70,74,],[14,24,46,48,52,53,63,64,73,75,]),'DE':([4,5,6,7,8,12,23,24,39,40,44,45,48,],[15,16,17,18,20,26,36,-19,50,51,54,55,-18,]),'PARENESQ':([7,8,],[19,21,]),'ID':([9,11,15,16,17,18,20,27,36,38,54,55,62,69,],[22,25,28,29,30,31,33,41,47,49,65,66,68,72,]),'COMO':([14,49,],[27,62,]),'NUMINT':([19,21,56,57,58,59,60,61,],[32,34,67,-12,-13,-14,-15,-16,]),'ONDE':([22,],[35,]),'VIRGULA':([23,24,48,73,],[37,-19,-18,74,]),'COM':([25,],[38,]),'BARRAS':([26,],[39,]),'PIZZA':([26,],[40,]),'PARA':([28,29,63,64,],[42,43,69,70,]),'PARENDIR':([32,34,],[44,45,]),'MAIORQ':([46,],[57,]),'MENORQ':([46,],[58,]),'MAIORIGUAL':([46,],[59,]),'MENORIGUAL':([46,],[60,]),'IGUAL':([46,],[61,]),'LADO':([68,],[71,]),}
+_lr_action_items = {'CARREGAR':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[3,3,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'MEDIA':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[4,4,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'SOMA':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[5,5,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'DESCRICAO':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[6,6,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'CABECA':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[7,7,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'CAUDA':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[8,8,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'FILTRAR':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[9,9,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'SELECIONE':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[10,10,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'JUNTAR':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[11,11,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'GRAFICO':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[12,12,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'CONTAR':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[13,13,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'ORDENAR':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[14,14,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'DELETAR':([0,1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[15,15,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'$end':([1,2,16,27,38,39,41,53,59,64,65,67,68,69,81,82,83,84,88,89,92,],[0,-2,-1,-24,-6,-7,-9,-3,-17,-23,-25,-27,-4,-5,-26,-8,-10,-11,-20,-21,-22,]),'STRING':([3,10,13,14,15,33,43,45,54,55,86,87,91,],[17,28,31,32,34,51,58,60,68,69,89,90,92,]),'DE':([4,5,6,7,8,12,26,28,31,32,34,47,48,51,56,57,60,],[18,19,20,21,23,30,44,-19,49,50,52,62,63,66,70,71,-18,]),'PARENESQ':([7,8,],[22,24,]),'ID':([9,10,11,18,19,20,21,23,35,44,46,49,50,52,62,63,66,70,71,78,],[25,27,29,36,37,38,39,41,53,59,61,64,65,67,79,80,81,82,83,85,]),'DECRESCENTE':([14,],[33,]),'COMO':([17,61,],[35,78,]),'NUMINT':([22,24,72,73,74,75,76,77,],[40,42,84,-12,-13,-14,-15,-16,]),'ONDE':([25,],[43,]),'VIRGULA':([26,28,60,90,],[45,-19,-18,91,]),'COM':([29,],[46,]),'BARRAS':([30,],[47,]),'PIZZA':([30,],[48,]),'PARA':([36,37,79,80,],[54,55,86,87,]),'PARENDIR':([40,42,],[56,57,]),'MAIORQ':([58,],[73,]),'MENORQ':([58,],[74,]),'MAIORIGUAL':([58,],[75,]),'MENORIGUAL':([58,],[76,]),'IGUAL':([58,],[77,]),'LADO':([85,],[88,]),}
 
 _lr_action = {}
 for _k, _v in _lr_action_items.items():
@@ -17,7 +17,7 @@ for _k, _v in _lr_action_items.items():
       _lr_action[_x][_k] = _y
 del _lr_action_items
 
-_lr_goto_items = {'program':([0,],[1,]),'expression':([0,1,],[2,13,]),'lista_colunas':([10,],[23,]),'operador':([46,],[56,]),}
+_lr_goto_items = {'program':([0,],[1,]),'expression':([0,1,],[2,16,]),'lista_colunas':([10,],[26,]),'operador':([58,],[72,]),}
 
 _lr_goto = {}
 for _k, _v in _lr_goto_items.items():
@@ -27,26 +27,31 @@ for _k, _v in _lr_goto_items.items():
 del _lr_goto_items
 _lr_productions = [
   ("S' -> program","S'",1,None,None,None),
-  ('program -> program expression','program',2,'p_program','analisador.py',170),
-  ('program -> expression','program',1,'p_program','analisador.py',171),
-  ('expression -> CARREGAR STRING COMO ID','expression',4,'p_comando_carregar','analisador.py',176),
-  ('expression -> MEDIA DE ID PARA STRING','expression',5,'p_comando_media','analisador.py',191),
-  ('expression -> SOMA DE ID PARA STRING','expression',5,'p_comando_soma','analisador.py',204),
-  ('expression -> DESCRICAO DE ID','expression',3,'p_comando_descricao','analisador.py',217),
-  ('expression -> CABECA DE ID','expression',3,'p_comando_cabeca','analisador.py',229),
-  ('expression -> CABECA PARENESQ NUMINT PARENDIR DE ID','expression',6,'p_comando_cabeca_quantidade','analisador.py',241),
-  ('expression -> CAUDA DE ID','expression',3,'p_comando_cauda','analisador.py',254),
-  ('expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID','expression',6,'p_comando_cauda_quantidade','analisador.py',266),
-  ('expression -> FILTRAR ID ONDE STRING operador NUMINT','expression',6,'p_comando_filtrar','analisador.py',279),
-  ('operador -> MAIORQ','operador',1,'p_operador','analisador.py',305),
-  ('operador -> MENORQ','operador',1,'p_operador','analisador.py',306),
-  ('operador -> MAIORIGUAL','operador',1,'p_operador','analisador.py',307),
-  ('operador -> MENORIGUAL','operador',1,'p_operador','analisador.py',308),
-  ('operador -> IGUAL','operador',1,'p_operador','analisador.py',309),
-  ('expression -> SELECIONE lista_colunas DE ID','expression',4,'p_comando_selecione_colunas','analisador.py',314),
-  ('lista_colunas -> lista_colunas VIRGULA STRING','lista_colunas',3,'p_lista_colunas','analisador.py',327),
-  ('lista_colunas -> STRING','lista_colunas',1,'p_lista_colunas','analisador.py',328),
-  ('expression -> JUNTAR ID COM ID COMO ID LADO','expression',7,'p_comando_juntar','analisador.py',336),
-  ('expression -> GRAFICO DE BARRAS DE STRING PARA ID','expression',7,'p_comando_grafico','analisador.py',371),
-  ('expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING','expression',9,'p_comando_grafico_pizza','analisador.py',389),
+  ('program -> program expression','program',2,'p_program','analisador.py',176),
+  ('program -> expression','program',1,'p_program','analisador.py',177),
+  ('expression -> CARREGAR STRING COMO ID','expression',4,'p_comando_carregar','analisador.py',182),
+  ('expression -> MEDIA DE ID PARA STRING','expression',5,'p_comando_media','analisador.py',197),
+  ('expression -> SOMA DE ID PARA STRING','expression',5,'p_comando_soma','analisador.py',210),
+  ('expression -> DESCRICAO DE ID','expression',3,'p_comando_descricao','analisador.py',223),
+  ('expression -> CABECA DE ID','expression',3,'p_comando_cabeca','analisador.py',235),
+  ('expression -> CABECA PARENESQ NUMINT PARENDIR DE ID','expression',6,'p_comando_cabeca_quantidade','analisador.py',247),
+  ('expression -> CAUDA DE ID','expression',3,'p_comando_cauda','analisador.py',260),
+  ('expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID','expression',6,'p_comando_cauda_quantidade','analisador.py',272),
+  ('expression -> FILTRAR ID ONDE STRING operador NUMINT','expression',6,'p_comando_filtrar','analisador.py',285),
+  ('operador -> MAIORQ','operador',1,'p_operador','analisador.py',311),
+  ('operador -> MENORQ','operador',1,'p_operador','analisador.py',312),
+  ('operador -> MAIORIGUAL','operador',1,'p_operador','analisador.py',313),
+  ('operador -> MENORIGUAL','operador',1,'p_operador','analisador.py',314),
+  ('operador -> IGUAL','operador',1,'p_operador','analisador.py',315),
+  ('expression -> SELECIONE lista_colunas DE ID','expression',4,'p_comando_selecione_colunas','analisador.py',320),
+  ('lista_colunas -> lista_colunas VIRGULA STRING','lista_colunas',3,'p_lista_colunas','analisador.py',333),
+  ('lista_colunas -> STRING','lista_colunas',1,'p_lista_colunas','analisador.py',334),
+  ('expression -> JUNTAR ID COM ID COMO ID LADO','expression',7,'p_comando_juntar','analisador.py',342),
+  ('expression -> GRAFICO DE BARRAS DE ID PARA STRING','expression',7,'p_comando_grafico','analisador.py',377),
+  ('expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING','expression',9,'p_comando_grafico_pizza','analisador.py',395),
+  ('expression -> CONTAR STRING DE ID','expression',4,'p_comando_contar','analisador.py',417),
+  ('expression -> SELECIONE ID','expression',2,'p_comando_ver_dataframe','analisador.py',427),
+  ('expression -> ORDENAR STRING DE ID','expression',4,'p_comando_ordenar_coluna','analisador.py',436),
+  ('expression -> ORDENAR DECRESCENTE STRING DE ID','expression',5,'p_comando_ordenar_decrescente_coluna','analisador.py',447),
+  ('expression -> DELETAR STRING DE ID','expression',4,'p_comando_deletar_coluna','analisador.py',483),
 ]

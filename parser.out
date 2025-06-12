@@ -52,8 +52,13 @@ Rule 17    expression -> SELECIONE lista_colunas DE ID
 Rule 18    lista_colunas -> lista_colunas VIRGULA STRING
 Rule 19    lista_colunas -> STRING
 Rule 20    expression -> JUNTAR ID COM ID COMO ID LADO
-Rule 21    expression -> GRAFICO DE BARRAS DE STRING PARA ID
-Rule 22    expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING
+Rule 21    expression -> GRAFICO DE BARRAS DE ID PARA STRING
+Rule 22    expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING
+Rule 23    expression -> CONTAR STRING DE ID
+Rule 24    expression -> SELECIONE ID
+Rule 25    expression -> ORDENAR STRING DE ID
+Rule 26    expression -> ORDENAR DECRESCENTE STRING DE ID
+Rule 27    expression -> DELETAR STRING DE ID
 
 Terminals, with rules where they appear
 
@@ -73,7 +78,10 @@ COM                  : 20
 COMANDO              : 
 COMO                 : 3 20
 CONTAGEM             : 
-DE                   : 4 5 6 7 8 9 10 17 21 21 22 22
+CONTAR               : 23
+DE                   : 4 5 6 7 8 9 10 17 21 21 22 22 23 25 26 27
+DECRESCENTE          : 26
+DELETAR              : 27
 DESCRICAO            : 6
 DIFERENTE            : 
 DIVIDIR              : 
@@ -82,7 +90,7 @@ FILTRAR              : 11
 FORMA                : 
 FUNCAO               : 
 GRAFICO              : 21 22
-ID                   : 3 4 5 6 7 8 9 10 11 17 20 20 20 21
+ID                   : 3 4 5 6 7 8 9 10 11 17 20 20 20 21 22 23 24 25 26 27
 IGUAL                : 16
 JUNTAR               : 20
 LADO                 : 20
@@ -100,6 +108,7 @@ NUMDEC               :
 NUMINT               : 8 10 11
 ONDE                 : 11
 OR                   : 
+ORDENAR              : 25 26
 PARA                 : 4 5 21 22
 PARENDIR             : 8 10
 PARENESQ             : 8 10
@@ -107,9 +116,9 @@ PIZZA                : 22
 PONTO                : 
 PONTOVIRGULA         : 
 RECEBE               : 
-SELECIONE            : 17
+SELECIONE            : 17 24
 SOMA                 : 5
-STRING               : 3 4 5 11 18 19 21 22 22 22
+STRING               : 3 4 5 11 18 19 21 22 22 23 25 26 27
 VEZES                : 
 VIRGULA              : 18 22
 error                : 
@@ -139,8 +148,13 @@ state 0
     (11) expression -> . FILTRAR ID ONDE STRING operador NUMINT
     (17) expression -> . SELECIONE lista_colunas DE ID
     (20) expression -> . JUNTAR ID COM ID COMO ID LADO
-    (21) expression -> . GRAFICO DE BARRAS DE STRING PARA ID
-    (22) expression -> . GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING
+    (21) expression -> . GRAFICO DE BARRAS DE ID PARA STRING
+    (22) expression -> . GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING
+    (23) expression -> . CONTAR STRING DE ID
+    (24) expression -> . SELECIONE ID
+    (25) expression -> . ORDENAR STRING DE ID
+    (26) expression -> . ORDENAR DECRESCENTE STRING DE ID
+    (27) expression -> . DELETAR STRING DE ID
 
     CARREGAR        shift and go to state 3
     MEDIA           shift and go to state 4
@@ -152,6 +166,9 @@ state 0
     SELECIONE       shift and go to state 10
     JUNTAR          shift and go to state 11
     GRAFICO         shift and go to state 12
+    CONTAR          shift and go to state 13
+    ORDENAR         shift and go to state 14
+    DELETAR         shift and go to state 15
 
     program                        shift and go to state 1
     expression                     shift and go to state 2
@@ -171,8 +188,13 @@ state 1
     (11) expression -> . FILTRAR ID ONDE STRING operador NUMINT
     (17) expression -> . SELECIONE lista_colunas DE ID
     (20) expression -> . JUNTAR ID COM ID COMO ID LADO
-    (21) expression -> . GRAFICO DE BARRAS DE STRING PARA ID
-    (22) expression -> . GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING
+    (21) expression -> . GRAFICO DE BARRAS DE ID PARA STRING
+    (22) expression -> . GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING
+    (23) expression -> . CONTAR STRING DE ID
+    (24) expression -> . SELECIONE ID
+    (25) expression -> . ORDENAR STRING DE ID
+    (26) expression -> . ORDENAR DECRESCENTE STRING DE ID
+    (27) expression -> . DELETAR STRING DE ID
 
     CARREGAR        shift and go to state 3
     MEDIA           shift and go to state 4
@@ -184,8 +206,11 @@ state 1
     SELECIONE       shift and go to state 10
     JUNTAR          shift and go to state 11
     GRAFICO         shift and go to state 12
+    CONTAR          shift and go to state 13
+    ORDENAR         shift and go to state 14
+    DELETAR         shift and go to state 15
 
-    expression                     shift and go to state 13
+    expression                     shift and go to state 16
 
 state 2
 
@@ -201,6 +226,9 @@ state 2
     SELECIONE       reduce using rule 2 (program -> expression .)
     JUNTAR          reduce using rule 2 (program -> expression .)
     GRAFICO         reduce using rule 2 (program -> expression .)
+    CONTAR          reduce using rule 2 (program -> expression .)
+    ORDENAR         reduce using rule 2 (program -> expression .)
+    DELETAR         reduce using rule 2 (program -> expression .)
     $end            reduce using rule 2 (program -> expression .)
 
 
@@ -208,28 +236,28 @@ state 3
 
     (3) expression -> CARREGAR . STRING COMO ID
 
-    STRING          shift and go to state 14
+    STRING          shift and go to state 17
 
 
 state 4
 
     (4) expression -> MEDIA . DE ID PARA STRING
 
-    DE              shift and go to state 15
+    DE              shift and go to state 18
 
 
 state 5
 
     (5) expression -> SOMA . DE ID PARA STRING
 
-    DE              shift and go to state 16
+    DE              shift and go to state 19
 
 
 state 6
 
     (6) expression -> DESCRICAO . DE ID
 
-    DE              shift and go to state 17
+    DE              shift and go to state 20
 
 
 state 7
@@ -237,8 +265,8 @@ state 7
     (7) expression -> CABECA . DE ID
     (8) expression -> CABECA . PARENESQ NUMINT PARENDIR DE ID
 
-    DE              shift and go to state 18
-    PARENESQ        shift and go to state 19
+    DE              shift and go to state 21
+    PARENESQ        shift and go to state 22
 
 
 state 8
@@ -246,43 +274,68 @@ state 8
     (9) expression -> CAUDA . DE ID
     (10) expression -> CAUDA . PARENESQ NUMINT PARENDIR DE ID
 
-    DE              shift and go to state 20
-    PARENESQ        shift and go to state 21
+    DE              shift and go to state 23
+    PARENESQ        shift and go to state 24
 
 
 state 9
 
     (11) expression -> FILTRAR . ID ONDE STRING operador NUMINT
 
-    ID              shift and go to state 22
+    ID              shift and go to state 25
 
 
 state 10
 
     (17) expression -> SELECIONE . lista_colunas DE ID
+    (24) expression -> SELECIONE . ID
     (18) lista_colunas -> . lista_colunas VIRGULA STRING
     (19) lista_colunas -> . STRING
 
-    STRING          shift and go to state 24
+    ID              shift and go to state 27
+    STRING          shift and go to state 28
 
-    lista_colunas                  shift and go to state 23
+    lista_colunas                  shift and go to state 26
 
 state 11
 
     (20) expression -> JUNTAR . ID COM ID COMO ID LADO
 
-    ID              shift and go to state 25
+    ID              shift and go to state 29
 
 
 state 12
 
-    (21) expression -> GRAFICO . DE BARRAS DE STRING PARA ID
-    (22) expression -> GRAFICO . DE PIZZA DE STRING PARA STRING VIRGULA STRING
+    (21) expression -> GRAFICO . DE BARRAS DE ID PARA STRING
+    (22) expression -> GRAFICO . DE PIZZA DE ID PARA STRING VIRGULA STRING
 
-    DE              shift and go to state 26
+    DE              shift and go to state 30
 
 
 state 13
+
+    (23) expression -> CONTAR . STRING DE ID
+
+    STRING          shift and go to state 31
+
+
+state 14
+
+    (25) expression -> ORDENAR . STRING DE ID
+    (26) expression -> ORDENAR . DECRESCENTE STRING DE ID
+
+    STRING          shift and go to state 32
+    DECRESCENTE     shift and go to state 33
+
+
+state 15
+
+    (27) expression -> DELETAR . STRING DE ID
+
+    STRING          shift and go to state 34
+
+
+state 16
 
     (1) program -> program expression .
 
@@ -296,82 +349,105 @@ state 13
     SELECIONE       reduce using rule 1 (program -> program expression .)
     JUNTAR          reduce using rule 1 (program -> program expression .)
     GRAFICO         reduce using rule 1 (program -> program expression .)
+    CONTAR          reduce using rule 1 (program -> program expression .)
+    ORDENAR         reduce using rule 1 (program -> program expression .)
+    DELETAR         reduce using rule 1 (program -> program expression .)
     $end            reduce using rule 1 (program -> program expression .)
-
-
-state 14
-
-    (3) expression -> CARREGAR STRING . COMO ID
-
-    COMO            shift and go to state 27
-
-
-state 15
-
-    (4) expression -> MEDIA DE . ID PARA STRING
-
-    ID              shift and go to state 28
-
-
-state 16
-
-    (5) expression -> SOMA DE . ID PARA STRING
-
-    ID              shift and go to state 29
 
 
 state 17
 
-    (6) expression -> DESCRICAO DE . ID
+    (3) expression -> CARREGAR STRING . COMO ID
 
-    ID              shift and go to state 30
+    COMO            shift and go to state 35
 
 
 state 18
 
-    (7) expression -> CABECA DE . ID
+    (4) expression -> MEDIA DE . ID PARA STRING
 
-    ID              shift and go to state 31
+    ID              shift and go to state 36
 
 
 state 19
 
-    (8) expression -> CABECA PARENESQ . NUMINT PARENDIR DE ID
+    (5) expression -> SOMA DE . ID PARA STRING
 
-    NUMINT          shift and go to state 32
+    ID              shift and go to state 37
 
 
 state 20
 
-    (9) expression -> CAUDA DE . ID
+    (6) expression -> DESCRICAO DE . ID
 
-    ID              shift and go to state 33
+    ID              shift and go to state 38
 
 
 state 21
 
-    (10) expression -> CAUDA PARENESQ . NUMINT PARENDIR DE ID
+    (7) expression -> CABECA DE . ID
 
-    NUMINT          shift and go to state 34
+    ID              shift and go to state 39
 
 
 state 22
 
-    (11) expression -> FILTRAR ID . ONDE STRING operador NUMINT
+    (8) expression -> CABECA PARENESQ . NUMINT PARENDIR DE ID
 
-    ONDE            shift and go to state 35
+    NUMINT          shift and go to state 40
 
 
 state 23
 
-    (17) expression -> SELECIONE lista_colunas . DE ID
-    (18) lista_colunas -> lista_colunas . VIRGULA STRING
+    (9) expression -> CAUDA DE . ID
 
-    DE              shift and go to state 36
-    VIRGULA         shift and go to state 37
+    ID              shift and go to state 41
 
 
 state 24
+
+    (10) expression -> CAUDA PARENESQ . NUMINT PARENDIR DE ID
+
+    NUMINT          shift and go to state 42
+
+
+state 25
+
+    (11) expression -> FILTRAR ID . ONDE STRING operador NUMINT
+
+    ONDE            shift and go to state 43
+
+
+state 26
+
+    (17) expression -> SELECIONE lista_colunas . DE ID
+    (18) lista_colunas -> lista_colunas . VIRGULA STRING
+
+    DE              shift and go to state 44
+    VIRGULA         shift and go to state 45
+
+
+state 27
+
+    (24) expression -> SELECIONE ID .
+
+    CARREGAR        reduce using rule 24 (expression -> SELECIONE ID .)
+    MEDIA           reduce using rule 24 (expression -> SELECIONE ID .)
+    SOMA            reduce using rule 24 (expression -> SELECIONE ID .)
+    DESCRICAO       reduce using rule 24 (expression -> SELECIONE ID .)
+    CABECA          reduce using rule 24 (expression -> SELECIONE ID .)
+    CAUDA           reduce using rule 24 (expression -> SELECIONE ID .)
+    FILTRAR         reduce using rule 24 (expression -> SELECIONE ID .)
+    SELECIONE       reduce using rule 24 (expression -> SELECIONE ID .)
+    JUNTAR          reduce using rule 24 (expression -> SELECIONE ID .)
+    GRAFICO         reduce using rule 24 (expression -> SELECIONE ID .)
+    CONTAR          reduce using rule 24 (expression -> SELECIONE ID .)
+    ORDENAR         reduce using rule 24 (expression -> SELECIONE ID .)
+    DELETAR         reduce using rule 24 (expression -> SELECIONE ID .)
+    $end            reduce using rule 24 (expression -> SELECIONE ID .)
+
+
+state 28
 
     (19) lista_colunas -> STRING .
 
@@ -379,44 +455,72 @@ state 24
     VIRGULA         reduce using rule 19 (lista_colunas -> STRING .)
 
 
-state 25
+state 29
 
     (20) expression -> JUNTAR ID . COM ID COMO ID LADO
 
-    COM             shift and go to state 38
-
-
-state 26
-
-    (21) expression -> GRAFICO DE . BARRAS DE STRING PARA ID
-    (22) expression -> GRAFICO DE . PIZZA DE STRING PARA STRING VIRGULA STRING
-
-    BARRAS          shift and go to state 39
-    PIZZA           shift and go to state 40
-
-
-state 27
-
-    (3) expression -> CARREGAR STRING COMO . ID
-
-    ID              shift and go to state 41
-
-
-state 28
-
-    (4) expression -> MEDIA DE ID . PARA STRING
-
-    PARA            shift and go to state 42
-
-
-state 29
-
-    (5) expression -> SOMA DE ID . PARA STRING
-
-    PARA            shift and go to state 43
+    COM             shift and go to state 46
 
 
 state 30
+
+    (21) expression -> GRAFICO DE . BARRAS DE ID PARA STRING
+    (22) expression -> GRAFICO DE . PIZZA DE ID PARA STRING VIRGULA STRING
+
+    BARRAS          shift and go to state 47
+    PIZZA           shift and go to state 48
+
+
+state 31
+
+    (23) expression -> CONTAR STRING . DE ID
+
+    DE              shift and go to state 49
+
+
+state 32
+
+    (25) expression -> ORDENAR STRING . DE ID
+
+    DE              shift and go to state 50
+
+
+state 33
+
+    (26) expression -> ORDENAR DECRESCENTE . STRING DE ID
+
+    STRING          shift and go to state 51
+
+
+state 34
+
+    (27) expression -> DELETAR STRING . DE ID
+
+    DE              shift and go to state 52
+
+
+state 35
+
+    (3) expression -> CARREGAR STRING COMO . ID
+
+    ID              shift and go to state 53
+
+
+state 36
+
+    (4) expression -> MEDIA DE ID . PARA STRING
+
+    PARA            shift and go to state 54
+
+
+state 37
+
+    (5) expression -> SOMA DE ID . PARA STRING
+
+    PARA            shift and go to state 55
+
+
+state 38
 
     (6) expression -> DESCRICAO DE ID .
 
@@ -430,10 +534,13 @@ state 30
     SELECIONE       reduce using rule 6 (expression -> DESCRICAO DE ID .)
     JUNTAR          reduce using rule 6 (expression -> DESCRICAO DE ID .)
     GRAFICO         reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    CONTAR          reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    ORDENAR         reduce using rule 6 (expression -> DESCRICAO DE ID .)
+    DELETAR         reduce using rule 6 (expression -> DESCRICAO DE ID .)
     $end            reduce using rule 6 (expression -> DESCRICAO DE ID .)
 
 
-state 31
+state 39
 
     (7) expression -> CABECA DE ID .
 
@@ -447,17 +554,20 @@ state 31
     SELECIONE       reduce using rule 7 (expression -> CABECA DE ID .)
     JUNTAR          reduce using rule 7 (expression -> CABECA DE ID .)
     GRAFICO         reduce using rule 7 (expression -> CABECA DE ID .)
+    CONTAR          reduce using rule 7 (expression -> CABECA DE ID .)
+    ORDENAR         reduce using rule 7 (expression -> CABECA DE ID .)
+    DELETAR         reduce using rule 7 (expression -> CABECA DE ID .)
     $end            reduce using rule 7 (expression -> CABECA DE ID .)
 
 
-state 32
+state 40
 
     (8) expression -> CABECA PARENESQ NUMINT . PARENDIR DE ID
 
-    PARENDIR        shift and go to state 44
+    PARENDIR        shift and go to state 56
 
 
-state 33
+state 41
 
     (9) expression -> CAUDA DE ID .
 
@@ -471,59 +581,90 @@ state 33
     SELECIONE       reduce using rule 9 (expression -> CAUDA DE ID .)
     JUNTAR          reduce using rule 9 (expression -> CAUDA DE ID .)
     GRAFICO         reduce using rule 9 (expression -> CAUDA DE ID .)
+    CONTAR          reduce using rule 9 (expression -> CAUDA DE ID .)
+    ORDENAR         reduce using rule 9 (expression -> CAUDA DE ID .)
+    DELETAR         reduce using rule 9 (expression -> CAUDA DE ID .)
     $end            reduce using rule 9 (expression -> CAUDA DE ID .)
 
 
-state 34
+state 42
 
     (10) expression -> CAUDA PARENESQ NUMINT . PARENDIR DE ID
 
-    PARENDIR        shift and go to state 45
+    PARENDIR        shift and go to state 57
 
 
-state 35
+state 43
 
     (11) expression -> FILTRAR ID ONDE . STRING operador NUMINT
 
-    STRING          shift and go to state 46
+    STRING          shift and go to state 58
 
 
-state 36
+state 44
 
     (17) expression -> SELECIONE lista_colunas DE . ID
 
-    ID              shift and go to state 47
+    ID              shift and go to state 59
 
 
-state 37
+state 45
 
     (18) lista_colunas -> lista_colunas VIRGULA . STRING
 
-    STRING          shift and go to state 48
+    STRING          shift and go to state 60
 
 
-state 38
+state 46
 
     (20) expression -> JUNTAR ID COM . ID COMO ID LADO
 
-    ID              shift and go to state 49
+    ID              shift and go to state 61
 
 
-state 39
+state 47
 
-    (21) expression -> GRAFICO DE BARRAS . DE STRING PARA ID
+    (21) expression -> GRAFICO DE BARRAS . DE ID PARA STRING
 
-    DE              shift and go to state 50
-
-
-state 40
-
-    (22) expression -> GRAFICO DE PIZZA . DE STRING PARA STRING VIRGULA STRING
-
-    DE              shift and go to state 51
+    DE              shift and go to state 62
 
 
-state 41
+state 48
+
+    (22) expression -> GRAFICO DE PIZZA . DE ID PARA STRING VIRGULA STRING
+
+    DE              shift and go to state 63
+
+
+state 49
+
+    (23) expression -> CONTAR STRING DE . ID
+
+    ID              shift and go to state 64
+
+
+state 50
+
+    (25) expression -> ORDENAR STRING DE . ID
+
+    ID              shift and go to state 65
+
+
+state 51
+
+    (26) expression -> ORDENAR DECRESCENTE STRING . DE ID
+
+    DE              shift and go to state 66
+
+
+state 52
+
+    (27) expression -> DELETAR STRING DE . ID
+
+    ID              shift and go to state 67
+
+
+state 53
 
     (3) expression -> CARREGAR STRING COMO ID .
 
@@ -537,38 +678,41 @@ state 41
     SELECIONE       reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
     JUNTAR          reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
     GRAFICO         reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    CONTAR          reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    ORDENAR         reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
+    DELETAR         reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
     $end            reduce using rule 3 (expression -> CARREGAR STRING COMO ID .)
 
 
-state 42
+state 54
 
     (4) expression -> MEDIA DE ID PARA . STRING
 
-    STRING          shift and go to state 52
+    STRING          shift and go to state 68
 
 
-state 43
+state 55
 
     (5) expression -> SOMA DE ID PARA . STRING
 
-    STRING          shift and go to state 53
+    STRING          shift and go to state 69
 
 
-state 44
+state 56
 
     (8) expression -> CABECA PARENESQ NUMINT PARENDIR . DE ID
 
-    DE              shift and go to state 54
+    DE              shift and go to state 70
 
 
-state 45
+state 57
 
     (10) expression -> CAUDA PARENESQ NUMINT PARENDIR . DE ID
 
-    DE              shift and go to state 55
+    DE              shift and go to state 71
 
 
-state 46
+state 58
 
     (11) expression -> FILTRAR ID ONDE STRING . operador NUMINT
     (12) operador -> . MAIORQ
@@ -577,15 +721,15 @@ state 46
     (15) operador -> . MENORIGUAL
     (16) operador -> . IGUAL
 
-    MAIORQ          shift and go to state 57
-    MENORQ          shift and go to state 58
-    MAIORIGUAL      shift and go to state 59
-    MENORIGUAL      shift and go to state 60
-    IGUAL           shift and go to state 61
+    MAIORQ          shift and go to state 73
+    MENORQ          shift and go to state 74
+    MAIORIGUAL      shift and go to state 75
+    MENORIGUAL      shift and go to state 76
+    IGUAL           shift and go to state 77
 
-    operador                       shift and go to state 56
+    operador                       shift and go to state 72
 
-state 47
+state 59
 
     (17) expression -> SELECIONE lista_colunas DE ID .
 
@@ -599,10 +743,13 @@ state 47
     SELECIONE       reduce using rule 17 (expression -> SELECIONE lista_colunas DE ID .)
     JUNTAR          reduce using rule 17 (expression -> SELECIONE lista_colunas DE ID .)
     GRAFICO         reduce using rule 17 (expression -> SELECIONE lista_colunas DE ID .)
+    CONTAR          reduce using rule 17 (expression -> SELECIONE lista_colunas DE ID .)
+    ORDENAR         reduce using rule 17 (expression -> SELECIONE lista_colunas DE ID .)
+    DELETAR         reduce using rule 17 (expression -> SELECIONE lista_colunas DE ID .)
     $end            reduce using rule 17 (expression -> SELECIONE lista_colunas DE ID .)
 
 
-state 48
+state 60
 
     (18) lista_colunas -> lista_colunas VIRGULA STRING .
 
@@ -610,28 +757,95 @@ state 48
     VIRGULA         reduce using rule 18 (lista_colunas -> lista_colunas VIRGULA STRING .)
 
 
-state 49
+state 61
 
     (20) expression -> JUNTAR ID COM ID . COMO ID LADO
 
-    COMO            shift and go to state 62
+    COMO            shift and go to state 78
 
 
-state 50
+state 62
 
-    (21) expression -> GRAFICO DE BARRAS DE . STRING PARA ID
+    (21) expression -> GRAFICO DE BARRAS DE . ID PARA STRING
 
-    STRING          shift and go to state 63
-
-
-state 51
-
-    (22) expression -> GRAFICO DE PIZZA DE . STRING PARA STRING VIRGULA STRING
-
-    STRING          shift and go to state 64
+    ID              shift and go to state 79
 
 
-state 52
+state 63
+
+    (22) expression -> GRAFICO DE PIZZA DE . ID PARA STRING VIRGULA STRING
+
+    ID              shift and go to state 80
+
+
+state 64
+
+    (23) expression -> CONTAR STRING DE ID .
+
+    CARREGAR        reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    MEDIA           reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    SOMA            reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    DESCRICAO       reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    CABECA          reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    CAUDA           reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    FILTRAR         reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    SELECIONE       reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    JUNTAR          reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    GRAFICO         reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    CONTAR          reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    ORDENAR         reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    DELETAR         reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+    $end            reduce using rule 23 (expression -> CONTAR STRING DE ID .)
+
+
+state 65
+
+    (25) expression -> ORDENAR STRING DE ID .
+
+    CARREGAR        reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    MEDIA           reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    SOMA            reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    DESCRICAO       reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    CABECA          reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    CAUDA           reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    FILTRAR         reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    SELECIONE       reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    JUNTAR          reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    GRAFICO         reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    CONTAR          reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    ORDENAR         reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    DELETAR         reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+    $end            reduce using rule 25 (expression -> ORDENAR STRING DE ID .)
+
+
+state 66
+
+    (26) expression -> ORDENAR DECRESCENTE STRING DE . ID
+
+    ID              shift and go to state 81
+
+
+state 67
+
+    (27) expression -> DELETAR STRING DE ID .
+
+    CARREGAR        reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    MEDIA           reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    SOMA            reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    DESCRICAO       reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    CABECA          reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    CAUDA           reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    FILTRAR         reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    SELECIONE       reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    JUNTAR          reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    GRAFICO         reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    CONTAR          reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    ORDENAR         reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    DELETAR         reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+    $end            reduce using rule 27 (expression -> DELETAR STRING DE ID .)
+
+
+state 68
 
     (4) expression -> MEDIA DE ID PARA STRING .
 
@@ -645,10 +859,13 @@ state 52
     SELECIONE       reduce using rule 4 (expression -> MEDIA DE ID PARA STRING .)
     JUNTAR          reduce using rule 4 (expression -> MEDIA DE ID PARA STRING .)
     GRAFICO         reduce using rule 4 (expression -> MEDIA DE ID PARA STRING .)
+    CONTAR          reduce using rule 4 (expression -> MEDIA DE ID PARA STRING .)
+    ORDENAR         reduce using rule 4 (expression -> MEDIA DE ID PARA STRING .)
+    DELETAR         reduce using rule 4 (expression -> MEDIA DE ID PARA STRING .)
     $end            reduce using rule 4 (expression -> MEDIA DE ID PARA STRING .)
 
 
-state 53
+state 69
 
     (5) expression -> SOMA DE ID PARA STRING .
 
@@ -662,87 +879,110 @@ state 53
     SELECIONE       reduce using rule 5 (expression -> SOMA DE ID PARA STRING .)
     JUNTAR          reduce using rule 5 (expression -> SOMA DE ID PARA STRING .)
     GRAFICO         reduce using rule 5 (expression -> SOMA DE ID PARA STRING .)
+    CONTAR          reduce using rule 5 (expression -> SOMA DE ID PARA STRING .)
+    ORDENAR         reduce using rule 5 (expression -> SOMA DE ID PARA STRING .)
+    DELETAR         reduce using rule 5 (expression -> SOMA DE ID PARA STRING .)
     $end            reduce using rule 5 (expression -> SOMA DE ID PARA STRING .)
 
 
-state 54
+state 70
 
     (8) expression -> CABECA PARENESQ NUMINT PARENDIR DE . ID
 
-    ID              shift and go to state 65
+    ID              shift and go to state 82
 
 
-state 55
+state 71
 
     (10) expression -> CAUDA PARENESQ NUMINT PARENDIR DE . ID
 
-    ID              shift and go to state 66
+    ID              shift and go to state 83
 
 
-state 56
+state 72
 
     (11) expression -> FILTRAR ID ONDE STRING operador . NUMINT
 
-    NUMINT          shift and go to state 67
+    NUMINT          shift and go to state 84
 
 
-state 57
+state 73
 
     (12) operador -> MAIORQ .
 
     NUMINT          reduce using rule 12 (operador -> MAIORQ .)
 
 
-state 58
+state 74
 
     (13) operador -> MENORQ .
 
     NUMINT          reduce using rule 13 (operador -> MENORQ .)
 
 
-state 59
+state 75
 
     (14) operador -> MAIORIGUAL .
 
     NUMINT          reduce using rule 14 (operador -> MAIORIGUAL .)
 
 
-state 60
+state 76
 
     (15) operador -> MENORIGUAL .
 
     NUMINT          reduce using rule 15 (operador -> MENORIGUAL .)
 
 
-state 61
+state 77
 
     (16) operador -> IGUAL .
 
     NUMINT          reduce using rule 16 (operador -> IGUAL .)
 
 
-state 62
+state 78
 
     (20) expression -> JUNTAR ID COM ID COMO . ID LADO
 
-    ID              shift and go to state 68
+    ID              shift and go to state 85
 
 
-state 63
+state 79
 
-    (21) expression -> GRAFICO DE BARRAS DE STRING . PARA ID
+    (21) expression -> GRAFICO DE BARRAS DE ID . PARA STRING
 
-    PARA            shift and go to state 69
-
-
-state 64
-
-    (22) expression -> GRAFICO DE PIZZA DE STRING . PARA STRING VIRGULA STRING
-
-    PARA            shift and go to state 70
+    PARA            shift and go to state 86
 
 
-state 65
+state 80
+
+    (22) expression -> GRAFICO DE PIZZA DE ID . PARA STRING VIRGULA STRING
+
+    PARA            shift and go to state 87
+
+
+state 81
+
+    (26) expression -> ORDENAR DECRESCENTE STRING DE ID .
+
+    CARREGAR        reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    MEDIA           reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    SOMA            reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    DESCRICAO       reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    CABECA          reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    CAUDA           reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    FILTRAR         reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    SELECIONE       reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    JUNTAR          reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    GRAFICO         reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    CONTAR          reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    ORDENAR         reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    DELETAR         reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+    $end            reduce using rule 26 (expression -> ORDENAR DECRESCENTE STRING DE ID .)
+
+
+state 82
 
     (8) expression -> CABECA PARENESQ NUMINT PARENDIR DE ID .
 
@@ -756,10 +996,13 @@ state 65
     SELECIONE       reduce using rule 8 (expression -> CABECA PARENESQ NUMINT PARENDIR DE ID .)
     JUNTAR          reduce using rule 8 (expression -> CABECA PARENESQ NUMINT PARENDIR DE ID .)
     GRAFICO         reduce using rule 8 (expression -> CABECA PARENESQ NUMINT PARENDIR DE ID .)
+    CONTAR          reduce using rule 8 (expression -> CABECA PARENESQ NUMINT PARENDIR DE ID .)
+    ORDENAR         reduce using rule 8 (expression -> CABECA PARENESQ NUMINT PARENDIR DE ID .)
+    DELETAR         reduce using rule 8 (expression -> CABECA PARENESQ NUMINT PARENDIR DE ID .)
     $end            reduce using rule 8 (expression -> CABECA PARENESQ NUMINT PARENDIR DE ID .)
 
 
-state 66
+state 83
 
     (10) expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID .
 
@@ -773,10 +1016,13 @@ state 66
     SELECIONE       reduce using rule 10 (expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID .)
     JUNTAR          reduce using rule 10 (expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID .)
     GRAFICO         reduce using rule 10 (expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID .)
+    CONTAR          reduce using rule 10 (expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID .)
+    ORDENAR         reduce using rule 10 (expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID .)
+    DELETAR         reduce using rule 10 (expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID .)
     $end            reduce using rule 10 (expression -> CAUDA PARENESQ NUMINT PARENDIR DE ID .)
 
 
-state 67
+state 84
 
     (11) expression -> FILTRAR ID ONDE STRING operador NUMINT .
 
@@ -790,31 +1036,34 @@ state 67
     SELECIONE       reduce using rule 11 (expression -> FILTRAR ID ONDE STRING operador NUMINT .)
     JUNTAR          reduce using rule 11 (expression -> FILTRAR ID ONDE STRING operador NUMINT .)
     GRAFICO         reduce using rule 11 (expression -> FILTRAR ID ONDE STRING operador NUMINT .)
+    CONTAR          reduce using rule 11 (expression -> FILTRAR ID ONDE STRING operador NUMINT .)
+    ORDENAR         reduce using rule 11 (expression -> FILTRAR ID ONDE STRING operador NUMINT .)
+    DELETAR         reduce using rule 11 (expression -> FILTRAR ID ONDE STRING operador NUMINT .)
     $end            reduce using rule 11 (expression -> FILTRAR ID ONDE STRING operador NUMINT .)
 
 
-state 68
+state 85
 
     (20) expression -> JUNTAR ID COM ID COMO ID . LADO
 
-    LADO            shift and go to state 71
+    LADO            shift and go to state 88
 
 
-state 69
+state 86
 
-    (21) expression -> GRAFICO DE BARRAS DE STRING PARA . ID
+    (21) expression -> GRAFICO DE BARRAS DE ID PARA . STRING
 
-    ID              shift and go to state 72
-
-
-state 70
-
-    (22) expression -> GRAFICO DE PIZZA DE STRING PARA . STRING VIRGULA STRING
-
-    STRING          shift and go to state 73
+    STRING          shift and go to state 89
 
 
-state 71
+state 87
+
+    (22) expression -> GRAFICO DE PIZZA DE ID PARA . STRING VIRGULA STRING
+
+    STRING          shift and go to state 90
+
+
+state 88
 
     (20) expression -> JUNTAR ID COM ID COMO ID LADO .
 
@@ -828,53 +1077,62 @@ state 71
     SELECIONE       reduce using rule 20 (expression -> JUNTAR ID COM ID COMO ID LADO .)
     JUNTAR          reduce using rule 20 (expression -> JUNTAR ID COM ID COMO ID LADO .)
     GRAFICO         reduce using rule 20 (expression -> JUNTAR ID COM ID COMO ID LADO .)
+    CONTAR          reduce using rule 20 (expression -> JUNTAR ID COM ID COMO ID LADO .)
+    ORDENAR         reduce using rule 20 (expression -> JUNTAR ID COM ID COMO ID LADO .)
+    DELETAR         reduce using rule 20 (expression -> JUNTAR ID COM ID COMO ID LADO .)
     $end            reduce using rule 20 (expression -> JUNTAR ID COM ID COMO ID LADO .)
 
 
-state 72
+state 89
 
-    (21) expression -> GRAFICO DE BARRAS DE STRING PARA ID .
+    (21) expression -> GRAFICO DE BARRAS DE ID PARA STRING .
 
-    CARREGAR        reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    MEDIA           reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    SOMA            reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    DESCRICAO       reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    CABECA          reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    CAUDA           reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    FILTRAR         reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    SELECIONE       reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    JUNTAR          reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    GRAFICO         reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-    $end            reduce using rule 21 (expression -> GRAFICO DE BARRAS DE STRING PARA ID .)
-
-
-state 73
-
-    (22) expression -> GRAFICO DE PIZZA DE STRING PARA STRING . VIRGULA STRING
-
-    VIRGULA         shift and go to state 74
+    CARREGAR        reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    MEDIA           reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    SOMA            reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    DESCRICAO       reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    CABECA          reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    CAUDA           reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    FILTRAR         reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    SELECIONE       reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    JUNTAR          reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    GRAFICO         reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    CONTAR          reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    ORDENAR         reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    DELETAR         reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
+    $end            reduce using rule 21 (expression -> GRAFICO DE BARRAS DE ID PARA STRING .)
 
 
-state 74
+state 90
 
-    (22) expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA . STRING
+    (22) expression -> GRAFICO DE PIZZA DE ID PARA STRING . VIRGULA STRING
 
-    STRING          shift and go to state 75
+    VIRGULA         shift and go to state 91
 
 
-state 75
+state 91
 
-    (22) expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .
+    (22) expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA . STRING
 
-    CARREGAR        reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    MEDIA           reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    SOMA            reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    DESCRICAO       reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    CABECA          reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    CAUDA           reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    FILTRAR         reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    SELECIONE       reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    JUNTAR          reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    GRAFICO         reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
-    $end            reduce using rule 22 (expression -> GRAFICO DE PIZZA DE STRING PARA STRING VIRGULA STRING .)
+    STRING          shift and go to state 92
+
+
+state 92
+
+    (22) expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .
+
+    CARREGAR        reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    MEDIA           reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    SOMA            reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    DESCRICAO       reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    CABECA          reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    CAUDA           reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    FILTRAR         reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    SELECIONE       reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    JUNTAR          reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    GRAFICO         reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    CONTAR          reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    ORDENAR         reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    DELETAR         reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
+    $end            reduce using rule 22 (expression -> GRAFICO DE PIZZA DE ID PARA STRING VIRGULA STRING .)
 
