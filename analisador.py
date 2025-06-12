@@ -444,9 +444,7 @@ def p_comando_ordenar_coluna(p):
             crescente = False
             saidas.append(f"Coluna {column} em ordem decrescente")
         else:
-            
-
-        saidas.append(dataframes[df_name].sort_values(by=column, ascending=crescente))
+            saidas.append(dataframes[df_name].sort_values(by=column, ascending=crescente))
     else:
         print(f"DataFrame '{df_name}' não encontrado.")
 
